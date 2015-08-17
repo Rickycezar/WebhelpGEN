@@ -1,0 +1,76 @@
+<div class="container">
+  <%= # params[:id].inspect;
+  %>
+  <%
+  require 'mysql2'  
+    #my = Mysql.new(hostname, username, password, databasename)  
+    client = Mysql2::Client.new(:host => "localhost", :username => "root", :password=>"gQ3E4na5", :database=>"WebhelpGEN")
+    results = client.query('select * from tbl_folders')  %>
+    <%= results.each do |row| %>
+      <%= puts row["id"].to_s; %><br>
+      <%= puts row["name"].to_s; %><br>
+     <% end %>
+    
+<form class="form-horizontal" target="/articles/create" method="">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Novo Artigo</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="art_title">Título do artigo</label>  
+  <div class="col-md-6">
+  <input id="art_title" name="art_title" type="text" placeholder="Ex. Cadastro de clientes" class="form-control input-md" required="">
+  <span class="help-block">Digite um título para o artigo.</span>  
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="selectbasic">Select Basic</label>
+  <div class="col-md-4">
+    <select id="selectbasic" name="selectbasic" class="form-control">
+      <option value="1">Option one</option>
+      <option value="2">Option two</option>
+    </select>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="art_fields">Campos</label>  
+  <div class="col-md-6">
+  <input id="art_fields" name="art_fields" type="text" placeholder="Ex. Nome do Cliente;CPF;Telefone" class="form-control input-md">
+  <span class="help-block">Digite os campos da aplicação, separados por ponto e vírgula</span>  
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="btn_runfields"></label>
+  <div class="col-md-4">
+    <button id="btn_runfields" name="btn_runfields" class="btn btn-primary">Atualizar campos</button>
+  </div>
+</div>
+
+<!--Texto do artigo-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="art_text">Texto do artigo</label>
+  <div class="col-md-4">                     
+    <textarea class="form-control" id="art_text" name="art_text"></textarea>
+  </div>
+</div>
+
+<!--Botões-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="btn_submit"></label>
+  <div class="col-md-8">
+    <button id="btn_submit" name="btn_submit" class="btn btn-success">Enviar</button>
+    <button id="btn_cancel" name="btn_cancel" class="btn btn-danger">Cancelar</button>
+  </div>
+</div>
+</fieldset>
+</form>
+
+  </div>
